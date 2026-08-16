@@ -1,14 +1,16 @@
-<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-6">
+<div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
   @for (shipment of shipments(); track shipment.id) {
     <div
-      class="group rounded-lg border border-zinc-800 bg-zinc-900 p-6 shadow-lg hover:border-zinc-700 transition-colors"
+      class="group rounded-lg border border-[var(--border)] bg-white p-6 shadow-sm transition-colors hover:border-[var(--accent)]"
     >
       <div class="flex items-start justify-between mb-4">
         <div>
-          <p class="font-mono text-sm font-semibold text-white">
+          <p class="font-mono text-sm font-semibold text-[var(--text-primary)]">
             {{ shipment.trackingNumber }}
           </p>
-          <p class="text-xs text-zinc-500 mt-1">{{ shipment.updatedAt | date: 'short' }}</p>
+          <p class="mt-1 text-xs text-[var(--text-secondary)]">
+            {{ shipment.updatedAt | date: 'short' }}
+          </p>
         </div>
         <span
           class="inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset"
@@ -21,7 +23,7 @@
       <div class="space-y-2 text-sm mb-4">
         <div class="flex items-start gap-2">
           <svg
-            class="h-4 w-4 mt-0.5 text-zinc-500 shrink-0"
+            class="mt-0.5 h-4 w-4 shrink-0 text-[var(--text-secondary)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -33,11 +35,11 @@
               d="M5 10l7-7m0 0l7 7m-7-7v18"
             />
           </svg>
-          <span class="text-zinc-400">{{ shipment.origin }}</span>
+          <span class="text-[var(--text-secondary)]">{{ shipment.origin }}</span>
         </div>
         <div class="flex items-start gap-2">
           <svg
-            class="h-4 w-4 mt-0.5 text-zinc-500 shrink-0"
+            class="mt-0.5 h-4 w-4 shrink-0 text-[var(--text-secondary)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -49,11 +51,11 @@
               d="M19 14l-7 7m0 0l-7-7m7 7V3"
             />
           </svg>
-          <span class="text-zinc-400">{{ shipment.destination }}</span>
+          <span class="text-[var(--text-secondary)]">{{ shipment.destination }}</span>
         </div>
         <div class="flex items-start gap-2">
           <svg
-            class="h-4 w-4 mt-0.5 text-white shrink-0"
+            class="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -71,12 +73,12 @@
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          <span class="text-white">{{ shipment.currentLocation }}</span>
+          <span class="font-medium text-[var(--text-primary)]">{{ shipment.currentLocation }}</span>
         </div>
         @if (shipment.estimatedDelivery) {
           <div class="flex items-start gap-2">
             <svg
-              class="h-4 w-4 mt-0.5 text-zinc-500 shrink-0"
+              class="mt-0.5 h-4 w-4 shrink-0 text-[var(--text-secondary)]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -88,15 +90,17 @@
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <span class="text-zinc-400">{{ shipment.estimatedDelivery }}</span>
+            <span class="text-[var(--text-secondary)]">{{ shipment.estimatedDelivery }}</span>
           </div>
         }
       </div>
     </div>
   } @empty {
-    <div class="col-span-full rounded-lg border border-dashed border-zinc-800 p-12 text-center">
+    <div
+      class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-white p-12 text-center"
+    >
       <svg
-        class="mx-auto h-12 w-12 text-zinc-600"
+        class="mx-auto h-12 w-12 text-[var(--text-secondary)]"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -108,8 +112,10 @@
           d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
         />
       </svg>
-      <h3 class="mt-4 text-lg font-semibold text-white">No shipments yet</h3>
-      <p class="mt-2 text-sm text-zinc-500">Create your first shipment to get started.</p>
+      <h3 class="mt-4 text-lg font-semibold text-[var(--text-primary)]">No shipments yet</h3>
+      <p class="mt-2 text-sm text-[var(--text-secondary)]">
+        Create your first shipment to get started.
+      </p>
     </div>
   }
 </div>
