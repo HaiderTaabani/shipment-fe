@@ -5,12 +5,13 @@
 
   <form [formGroup]="shipmentForm" (ngSubmit)="createShipment()" class="space-y-4">
     <div class="space-y-2">
-      <label class="text-sm font-medium text-[var(--text-secondary)]">Origin</label>
+      <label for="origin" class="text-sm font-medium text-[var(--text-secondary)]">Origin</label>
       <input
+        id="origin"
         type="text"
         formControlName="origin"
         placeholder="e.g., New York, NY"
-        class="flex h-10 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        class="flex h-10 w-full rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
         [class.border-red-500]="hasError('origin')"
       />
       @if (hasError('origin')) {
@@ -21,12 +22,15 @@
     </div>
 
     <div class="space-y-2">
-      <label class="text-sm font-medium text-[var(--text-secondary)]">Destination</label>
+      <label for="destination" class="text-sm font-medium text-[var(--text-secondary)]">
+        Destination
+      </label>
       <input
+        id="destination"
         type="text"
         formControlName="destination"
         placeholder="e.g., Los Angeles, CA"
-        class="flex h-10 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        class="flex h-10 w-full rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
         [class.border-red-500]="hasError('destination')"
       />
       @if (hasError('destination')) {
@@ -37,12 +41,15 @@
     </div>
 
     <div class="space-y-2">
-      <label class="text-sm font-medium text-[var(--text-secondary)]">Estimated Delivery</label>
+      <label for="estimated-delivery" class="text-sm font-medium text-[var(--text-secondary)]">
+        Estimated Delivery
+      </label>
       <input
+        id="estimated-delivery"
         type="text"
         formControlName="estimatedDelivery"
         placeholder="e.g., 3-5 business days"
-        class="flex h-10 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        class="flex h-10 w-full rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
       />
     </div>
 

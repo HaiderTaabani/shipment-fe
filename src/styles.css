@@ -11,6 +11,30 @@
   --accent-dark: #b80012;
 }
 
+html[data-font-size='small'] {
+  font-size: 87.5%;
+}
+
+html[data-font-size='normal'] {
+  font-size: 100%;
+}
+
+html[data-font-size='large'] {
+  font-size: 112.5%;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --bg-primary: #171411;
+  --bg-secondary: #24201c;
+  --bg-tertiary: #332d27;
+  --text-primary: #fffaf4;
+  --text-secondary: #d4cbc1;
+  --border: #5b5147;
+  --accent: #ff3347;
+  --accent-dark: #d90b20;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);

@@ -1,7 +1,7 @@
 <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
   @for (shipment of shipments(); track shipment.id) {
     <div
-      class="group rounded-lg border border-[var(--border)] bg-white p-6 shadow-sm transition-colors hover:border-[var(--accent)]"
+      class="group rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] p-6 shadow-sm transition-colors hover:border-[var(--accent)]"
     >
       <div class="flex items-start justify-between mb-4">
         <div>
@@ -97,7 +97,7 @@
     </div>
   } @empty {
     <div
-      class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-white p-12 text-center"
+      class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--bg-secondary)] p-12 text-center"
     >
       <svg
         class="mx-auto h-12 w-12 text-[var(--text-secondary)]"
