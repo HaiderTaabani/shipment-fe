@@ -26,3 +26,23 @@ test('should create a shipment', async ({ page }) => {
   await expect(page.getByText(origin, { exact: true })).toBeVisible();
   await expect(page.getByText(destination, { exact: true })).toBeVisible();
 });
+
+test('should show errors and not call the API when the form is empty', async ({ page }) => {
+  const postRequests: string[] = [];
+
+  page.on('request', (request) => {
+    if (request.url().endsWith('/api/shipments') && request.method() === 'POST') {
+      postRequests.push(request.url());
+    }
+  });
+
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Create Shipment' }).click();
+
+  const requiredErrors = page.getByText('This field is required', { exact: true });
+
+  await expect(requiredErrors).toHaveCount(2);
+  await expect(requiredErrors.first()).toBeVisible();
+  await expect(requiredErrors.last()).toBeVisible();
+  expect(postRequests).toHaveLength(0);
+});
