@@ -12,5 +12,5 @@ import { Notification } from './notification/notification';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('shipment-fe');
+  protected readonly title = signal('Gestion des expositions itinérantes');
 }

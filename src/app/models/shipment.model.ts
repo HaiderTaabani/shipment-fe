@@ -42,11 +42,11 @@ export interface StatusUpdateMessage {
 }
 
 export const STATUS_LABELS: Readonly<Record<ShipmentStatus, string>> = {
-  [SHIPMENT_STATUS.ORDER_PLACED]: 'Order Placed',
-  [SHIPMENT_STATUS.PROCESSING]: 'Processing',
-  [SHIPMENT_STATUS.PICKED_UP]: 'Picked Up',
-  [SHIPMENT_STATUS.IN_TRANSIT]: 'In Transit',
-  [SHIPMENT_STATUS.OUT_FOR_DELIVERY]: 'Out for Delivery',
-  [SHIPMENT_STATUS.DELIVERED]: 'Delivered',
-  [SHIPMENT_STATUS.EXCEPTION]: 'Exception',
+  [SHIPMENT_STATUS.ORDER_PLACED]: 'En préparation',
+  [SHIPMENT_STATUS.PROCESSING]: 'Colisage en cours',
+  [SHIPMENT_STATUS.PICKED_UP]: 'Prise en charge',
+  [SHIPMENT_STATUS.IN_TRANSIT]: 'En transport',
+  [SHIPMENT_STATUS.OUT_FOR_DELIVERY]: 'Livraison en cours',
+  [SHIPMENT_STATUS.DELIVERED]: 'Livrée',
+  [SHIPMENT_STATUS.EXCEPTION]: 'Incident',
 };

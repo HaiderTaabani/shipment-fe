@@ -42,7 +42,7 @@ export class UpdateShipment implements OnInit {
       .updateShipment(shipmentId, { status, currentLocation })
       .pipe(
         catchError((error) => {
-          this.errorMessage.set('Failed to load shipments');
+          this.errorMessage.set("Impossible de modifier l'exposition");
           console.error('error:', error);
           return of(null);
         }),
@@ -83,7 +83,7 @@ export class UpdateShipment implements OnInit {
       .getAllShipments()
       .pipe(
         catchError((error) => {
-          this.errorMessage.set('Failed to load shipments');
+          this.errorMessage.set('Impossible de charger les expositions');
           console.error('error:', error);
           return of([]);
         }),
@@ -102,7 +102,7 @@ export class UpdateShipment implements OnInit {
   getErrorMessage(fieldName: string): string {
     const field = this.updateForm.get(fieldName);
     if (field?.hasError('required')) {
-      return 'This field is required';
+      return 'Ce champ est obligatoire';
     }
     return '';
   }

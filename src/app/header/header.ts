@@ -14,7 +14,7 @@ export class Header implements OnInit {
   private elementRef = inject(ElementRef<HTMLElement>);
   private websocketService = inject(WebsocketService);
 
-  title = 'Shipment Tracker';
+  title = 'Gestion des expositions itinérantes';
   isConnected = signal(false);
   isAccessibilityPanelOpen = signal(false);
   fontSize = signal<'small' | 'normal' | 'large'>('normal');

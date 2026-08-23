@@ -52,10 +52,10 @@ export class CreateShipment {
   getErrorMessage(fieldName: string): string {
     const field = this.shipmentForm.get(fieldName);
     if (field?.hasError('required')) {
-      return 'This field is required';
+      return 'Ce champ est obligatoire';
     }
     if (field?.hasError('minlength')) {
-      return 'Please enter at least 2 characters';
+      return 'Saisissez au moins 2 caractères';
     }
     return '';
   }
