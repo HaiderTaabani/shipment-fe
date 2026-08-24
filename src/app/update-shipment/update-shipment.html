@@ -1,5 +1,7 @@
 <div class="rounded-lg border border-[var(--border)] bg-[var(--bg-secondary)] p-6 shadow-sm">
-  <h2 class="mb-6 text-2xl font-semibold text-[var(--text-primary)]">Update Shipment Status</h2>
+  <h2 class="mb-6 text-2xl font-semibold text-[var(--text-primary)]">
+    Modifier l'exposition
+  </h2>
 
   @if (errorMessage()) {
     <div class="mb-4 rounded-md border border-red-200 bg-red-50 p-3">
@@ -9,19 +11,21 @@
 
   @if (isLoading()) {
     <div class="flex justify-center items-center py-8">
-      <p class="text-[var(--text-secondary)]">Loading shipments...</p>
+      <p class="text-[var(--text-secondary)]">Chargement des expositions...</p>
     </div>
   } @else {
     <form [formGroup]="updateForm" (ngSubmit)="updateShipment()" class="space-y-4">
       <div class="space-y-2">
-        <label class="text-sm font-medium text-[var(--text-secondary)]">Select Shipment</label>
+        <label class="text-sm font-medium text-[var(--text-secondary)]">
+          Sélectionner une exposition
+        </label>
         <select
           formControlName="shipmentId"
           (change)="onSelectShipmentId()"
           class="flex h-10 w-full rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
           [class.border-red-500]="hasError('shipmentId')"
         >
-          <option [ngValue]="null">-- Select a shipment --</option>
+          <option [ngValue]="null">-- Sélectionnez une exposition --</option>
           @for (shipment of shipments(); track shipment.id) {
             <option [ngValue]="shipment.id">
               {{ shipment.trackingNumber }} - {{ shipment.destination }}
@@ -34,7 +38,7 @@
       </div>
 
       <div class="space-y-2">
-        <label class="text-sm font-medium text-[var(--text-secondary)]">New Status</label>
+        <label class="text-sm font-medium text-[var(--text-secondary)]">Nouveau statut</label>
         <select
           formControlName="status"
           class="flex h-10 w-full rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
@@ -50,11 +54,13 @@
       </div>
 
       <div class="space-y-2">
-        <label class="text-sm font-medium text-[var(--text-secondary)]">Current Location</label>
+        <label class="text-sm font-medium text-[var(--text-secondary)]">
+          Localisation actuelle
+        </label>
         <input
           type="text"
           formControlName="currentLocation"
-          placeholder="e.g., Chicago Distribution Center"
+          placeholder="Ex. : Centre de stockage de Lyon"
           class="flex h-10 w-full rounded-md border border-[var(--border)] bg-[var(--bg-secondary)] px-3 py-2 text-sm text-[var(--text-primary)] placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
         />
       </div>
@@ -64,7 +70,7 @@
         [disabled]="updateForm.invalid || isSubmitting()"
         class="inline-flex h-10 w-full items-center justify-center rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--accent-dark)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {{ isSubmitting() ? 'Updating...' : 'Update Status' }}
+        {{ isSubmitting() ? 'Enregistrement...' : 'Enregistrer les modifications' }}
       </button>
     </form>
   }
