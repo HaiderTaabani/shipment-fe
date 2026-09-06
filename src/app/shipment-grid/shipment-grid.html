@@ -96,28 +96,61 @@
       </div>
     </div>
   } @empty {
-    <div
-      class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--bg-secondary)] p-12 text-center"
-    >
-      <svg
-        class="mx-auto h-12 w-12 text-[var(--text-secondary)]"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    @if (loading()) {
+      <div
+        class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--bg-secondary)] p-12 text-center"
+        aria-live="polite"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-        />
-      </svg>
-      <h3 class="mt-4 text-lg font-semibold text-[var(--text-primary)]">
-        Aucune exposition enregistrée
-      </h3>
-      <p class="mt-2 text-sm text-[var(--text-secondary)]">
-        Ajoutez votre première exposition pour commencer.
-      </p>
-    </div>
+        <h3 class="text-lg font-semibold text-[var(--text-primary)]">
+          Chargement des expositions…
+        </h3>
+        <p class="mt-2 text-sm text-[var(--text-secondary)]">
+          Le serveur peut mettre jusqu'à une minute à se réveiller.
+        </p>
+      </div>
+    } @else if (loadError()) {
+      <div
+        class="col-span-full rounded-lg border border-dashed border-[var(--accent)] bg-[var(--bg-secondary)] p-12 text-center"
+        role="alert"
+      >
+        <h3 class="text-lg font-semibold text-[var(--text-primary)]">
+          Impossible de charger les expositions
+        </h3>
+        <p class="mt-2 text-sm text-[var(--text-secondary)]">
+          Le serveur n'a pas répondu. La liste n'est peut-être pas vide.
+        </p>
+        <button
+          type="button"
+          class="mt-4 rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white"
+          (click)="loadShipment()"
+        >
+          Réessayer
+        </button>
+      </div>
+    } @else {
+      <div
+        class="col-span-full rounded-lg border border-dashed border-[var(--border)] bg-[var(--bg-secondary)] p-12 text-center"
+      >
+        <svg
+          class="mx-auto h-12 w-12 text-[var(--text-secondary)]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+          />
+        </svg>
+        <h3 class="mt-4 text-lg font-semibold text-[var(--text-primary)]">
+          Aucune exposition enregistrée
+        </h3>
+        <p class="mt-2 text-sm text-[var(--text-secondary)]">
+          Ajoutez votre première exposition pour commencer.
+        </p>
+      </div>
+    }
   }
 </div>

@@ -22,6 +22,8 @@ export class ShipmentGrid implements OnInit {
   private shipmentService = inject(ShipmentService);
   private webSocketService = inject(WebsocketService);
   shipments = signal<Shipment[]>([]);
+  loading = signal(false);
+  loadError = signal(false);
   STATUS_LABELS = STATUS_LABELS;
 
   readonly STATUS_BADGE_CLASS_MAP: Record<ShipmentStatus, string> = {
@@ -58,14 +60,20 @@ export class ShipmentGrid implements OnInit {
   }
 
   private handleStatusUpdate(update: StatusUpdateMessage): void {
-    this.shipments.update((shipments) => {
-      const updatedShipment = shipments.find((shipment) => shipment.id === update.shipmentId);
-      if (!updatedShipment) {
-        return shipments;
-      }
+    const isAlreadyDisplayed = this.shipments().some(
+      (shipment) => shipment.id === update.shipmentId,
+    );
 
-      const updatedShipments = shipments.map((shipment) => {
-        if (shipment.id !== updatedShipment.id) return shipment;
+    // Exposition inconnue de la grille : c'est une creation, ou la liste
+    // n'a jamais pu etre chargee. On la recharge au lieu d'ignorer le message.
+    if (!isAlreadyDisplayed) {
+      this.loadShipment();
+      return;
+    }
+
+    this.shipments.update((shipments) =>
+      shipments.map((shipment) => {
+        if (shipment.id !== update.shipmentId) return shipment;
 
         return {
           ...shipment,
@@ -73,15 +81,24 @@ export class ShipmentGrid implements OnInit {
           currentLocation: update.currentLocation,
           updatedAt: update.timestamp,
         };
-      });
-
-      return updatedShipments;
-    });
+      }),
+    );
   }
 
   loadShipment(): void {
-    this.shipmentService.getAllShipments().subscribe((shipments) => {
-      this.shipments.set(shipments);
+    this.loading.set(true);
+    this.loadError.set(false);
+
+    this.shipmentService.getAllShipments().subscribe({
+      next: (shipments) => {
+        this.shipments.set(shipments);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error('[ShipmentGrid] Chargement des expositions impossible', error);
+        this.loadError.set(true);
+        this.loading.set(false);
+      },
     });
   }
 
