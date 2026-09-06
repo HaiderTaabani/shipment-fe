@@ -2,6 +2,7 @@ import { DestroyRef, inject, Injectable } from '@angular/core';
 import { Client, StompSubscription, Versions } from '@stomp/stompjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StatusUpdateMessage } from '../models/shipment.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class WebsocketService {
 
   initClient(): void {
     this.client = new Client({
-      brokerURL: 'http://localhost:8080/ws',
+      brokerURL: environment.wsUrl,
       stompVersions: Versions.default,
       reconnectDelay: 5000,
       heartbeatIncoming: 10000,
